@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device Location Map</title>
     <style>
         #map {
             height: 400px;
             width: 100%;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #a8e6a8;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #82c77c;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
-    <!-- Include Leaflet library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    <h1>Device Location Map</h1>
-    <div id="map"></div>
+    <div id="map-container">
+        <h1 style="font-family: georgia; text-align: center; font-size: 35px; color: rgb(26, 109, 37);">GEOCALIZZAZIONE</h1>
+        <div id="map"></div>
+    </div>
 
     <script>
         function initMap() {
-            const map = L.map('map').setView([0, 0], 15); // Inizializza la mappa con una posizione di default
+            const map = L.map('map').setView([0, 0], 15); 
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
 
-            // Ottenere la posizione del dispositivo
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         const lat = position.coords.latitude;
                         const lon = position.coords.longitude;
 
-                        // Aggiorna la mappa con la posizione del dispositivo
                         map.setView([lat, lon], 15);
                         L.marker([lat, lon]).addTo(map)
                             .bindPopup('Your Location')
@@ -47,11 +66,9 @@
             }
         }
 
-        // Inizializza la mappa quando la pagina è caricata
         document.addEventListener('DOMContentLoaded', initMap);
     </script>
 
-    <!-- Include Leaflet library -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>
