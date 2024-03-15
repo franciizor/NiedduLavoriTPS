@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+<body ng-app="myApp">
+
+
+
+<a href="#!geolier">tour geolier</a></p>
+<a href="#!sfera_ebbasta">tour sfera ebbasta</a></p>
+<a href="#!lazza">tour lazza</a></p>
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.html",
+    })
+    .when("/geolier", {
+        templateUrl : "geolier.html",
+        controller : "geolierCtrl"
+    })
+    .when("/sfera_ebbasta", {
+        templateUrl : "sfera_ebbasta.html",
+        controller : "sfera_ebbastaCtrl"
+    })
+    .when("/lazza", {
+        templateUrl : "lazza.html",
+        controller : "lazzaCtrl"
+    });
+});
+app.controller("geolierCtrl", function ($scope) {
+    $scope.msg = "tour";
+});
+app.controller("sfera_ebbastaCtrl", function ($scope) {
+    $scope.msg = "tour";
+});
+app.controller("lazzaCtrl", function ($scope) {
+    $scope.msg = "tour";
+});
+
+</script>
+
+</body>
+</html>
